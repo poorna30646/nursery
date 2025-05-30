@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cart - Nursery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #121212;
+      color: #eee;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #eee;
+    }
+    .cart-item {
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #1e1e1e;
+    }
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .cart-item-details {
+      flex: 1;
+      color: #ddd;
+    }
+    .cart-item-name {
+      font-weight: bold;
+      font-size: 16px;
+      color: #fff;
+    }
+    .empty-cart {
+      font-size: 18px;
+      color: #aaa;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #66aaff;
+      font-weight: bold;
+    }
+    .back-link:hover {
+      color: #99cfff;
+    }
+    .back-link:hover {
+      color: #99cfff;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #3a8dde;
+      color: white;
+    }
+    button:active {
+      background-color: #2a6bbf;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div id="cart-items"></div>
+  <a href="nursery.html" class="back-link">← Back to Nursery</a>
+
+  <script>
+    function loadCart() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cart = JSON.parse(localStorage.getItem('nurseryCart')) || [];
+      cartItemsContainer.innerHTML = '';
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.name;
+
+        const detailsDiv = document.createElement('div');
+        detailsDiv.className = 'cart-item-details';
+
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'cart-item-name';
+        nameDiv.textContent = item.name;
+
+        // Create Remove button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.style.marginRight = '10px';
+        removeButton.onclick = () => {
+          cart.splice(index, 1);
+          localStorage.setItem('nurseryCart', JSON.stringify(cart));
+          loadCart();
+        };
+
+        // Create Buy button
+        const buyButton = document.createElement('button');
+        buyButton.textContent = 'Buy';
+        buyButton.onclick = () => {
+          window.location.href = 'paymentoptions.html';
+        };
+
+        detailsDiv.appendChild(nameDiv);
+        detailsDiv.appendChild(removeButton);
+        detailsDiv.appendChild(buyButton);
+        itemDiv.appendChild(img);
+        itemDiv.appendChild(detailsDiv);
+
+        cartItemsContainer.appendChild(itemDiv);
+      });
+    }
+
+    window.onload = loadCart;
+  </script>
+</body>
+</html>
