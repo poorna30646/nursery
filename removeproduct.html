@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Remove Products</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      padding: 20px;
+      color: #eee;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #eee;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      background-color: #1e1e1e;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+    .card button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #f44336;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .card button:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <h1>Remove Products</h1>
+  <section class="cards-grid" id="product-list">
+    <!-- Products will be rendered here -->
+  </section>
+
+  <script>
+    // Load nursery items from localStorage or initialize with default
+    function loadNurseryItems() {
+      let items = JSON.parse(localStorage.getItem('nurseryItems'));
+      if (!items) {
+        items = [
+          { name: "Product 1", image: "https://via.placeholder.com/150" },
+          { name: "Product 2", image: "https://via.placeholder.com/150" },
+          { name: "Product 3", image: "https://via.placeholder.com/150" },
+          { name: "Product 4", image: "https://via.placeholder.com/150" },
+          { name: "Product 5", image: "https://via.placeholder.com/150" },
+          { name: "Product 6", image: "https://via.placeholder.com/150" },
+          { name: "Product 7", image: "https://via.placeholder.com/150" },
+          { name: "Product 8", image: "https://via.placeholder.com/150" },
+          { name: "Product 9", image: "https://via.placeholder.com/150" },
+          { name: "Product 10", image: "https://via.placeholder.com/150" }
+        ];
+        localStorage.setItem('nurseryItems', JSON.stringify(items));
+      }
+      return items;
+    }
+
+    // Render nursery items with remove buttons
+    function renderProducts() {
+      const container = document.getElementById('product-list');
+      const items = loadNurseryItems();
+      container.innerHTML = '';
+      if (items.length === 0) {
+        container.innerHTML = '<p>No products available.</p>';
+        return;
+      }
+      items.forEach((item, index) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div style="margin-top: 10px; font-weight: bold;">${item.name}</div>
+          <button onclick="removeProduct(${index})">Remove</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Remove product by index and update localStorage and UI
+    function removeProduct(index) {
+      let items = loadNurseryItems();
+      items.splice(index, 1);
+      localStorage.setItem('nurseryItems', JSON.stringify(items));
+      alert('Product removed successfully.');
+      renderProducts();
+    }
+
+    // Initial render
+    renderProducts();
+  </script>
+</body>
+</html>

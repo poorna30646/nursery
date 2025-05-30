@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #121212;
+      color: #eee;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #eee;
+    }
+    ul.payment-options {
+      list-style-type: none;
+      padding: 0;
+    }
+    ul.payment-options li {
+      background-color: #febd69;
+      margin-bottom: 10px;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 200px;
+      color: #000;
+    }
+    ul.payment-options li:hover {
+      background-color: #fcae3d;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+    <center>
+  <h1>Payment Options for <span id="product-name">Product</span></h1>
+  <ul class="payment-options">
+    <li><a href="upipayment.html" id="upi-link">UPI</a></li>
+    <li><a href="giftcard.html" id="giftcard-link" style="text-decoration:none; color: inherit;">Gift Cards</a></li>
+  </ul>
+
+  <script>
+    // Get product name from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('name') || 'Product';
+
+    // Set product name in heading
+    document.getElementById('product-name').textContent = productName;
+
+    // Set product name in UPI link query parameter
+    const upiLink = document.getElementById('upi-link');
+    upiLink.href = 'upipayment.html?name=' + encodeURIComponent(productName);
+
+    // Set product name in Credit Card link query parameter
+    const creditCardLink = document.getElementById('creditcard-link');
+    creditCardLink.href = 'creditcard.html?name=' + encodeURIComponent(productName);
+
+    // Set product name in Gift Card link query parameter
+    const giftCardLink = document.getElementById('giftcard-link');
+    giftCardLink.href = 'giftcard.html?name=' + encodeURIComponent(productName);
+  </script>
+  </center>
+</body>
+</html>

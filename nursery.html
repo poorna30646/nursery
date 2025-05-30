@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nursery</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #a8e063, #56ab2f);
+      animation: backgroundAnimation 15s ease infinite;
+      min-height: 100vh;
+    }
+    @keyframes backgroundAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header container */
+    .header {
+      background-color: #131921;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      height: 60px;
+      font-size: 14px;
+      user-select: none;
+    }
+    /* Amazon logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .logo img {
+      height: 32px;
+      width: auto;
+    }
+    /* Location delivery */
+    .location {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 15px;
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 1.1;
+    }
+    .location .line1 {
+      font-size: 12px;
+    }
+    .location .line2 {
+      font-weight: bold;
+      font-size: 14px;
+    }
+    /* Search bar container */
+    .search-bar {
+      display: flex;
+      flex: 1;
+      max-width: 600px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+    /* Category dropdown */
+    .category-select {
+      background-color: #f3f3f3;
+      border: none;
+      padding: 5px 8px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #111;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      outline: none;
+      min-width: 120px;
+    }
+    /* Search input */
+    .search-input {
+      flex: 1;
+      border: none;
+      padding: 8px 10px;
+      font-size: 16px;
+      outline: none;
+    }
+    /* Search button */
+    .search-button {
+      background-color: #febd69;
+      border: none;
+      padding: 0 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    .search-button svg {
+      width: 20px;
+      height: 20px;
+      fill: #111;
+    }
+    /* Nav links container */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    /* Language selector */
+    .language-selector {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .language-selector img {
+      width: 20px;
+      height: 14px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+    /* Account & Lists, Returns & Orders */
+    .nav-item {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      color: white;
+    }
+    .nav-item .line1 {
+      font-size: 12px;
+    }
+    .nav-item .line2 {
+      font-weight: bold;
+      font-size: 14px;
+    }
+    /* Cart */
+    .cart {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+      position: relative;
+    }
+    .cart svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+    .cart-count {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background-color: #f08804;
+      color: black;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      user-select: none;
+    }
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .card button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #febd69;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    .card button:hover {
+      background-color: #fcae3d;
+    }
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+  </style>
+=======
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #a8e063, #56ab2f);
+      background-size: 400% 400%;
+      animation: backgroundAnimation 15s ease infinite;
+      min-height: 100vh;
+    }
+    @keyframes backgroundAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header container */
+    .header {
+      background-color: #131921;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      height: 60px;
+      font-size: 14px;
+      user-select: none;
+    }
+    /* Amazon logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .logo img {
+      height: 32px;
+      width: auto;
+    }
+    /* Location delivery */
+    .location {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 15px;
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 1.1;
+    }
+    .location .line1 {
+      font-size: 12px;
+    }
+    .location .line2 {
+      font-weight: bold;
+      font-size: 14px;
+    }
+    /* Search bar container */
+    .search-bar {
+      display: flex;
+      flex: 1;
+      max-width: 600px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+    /* Category dropdown */
+    .category-select {
+      background-color: #f3f3f3;
+      border: none;
+      padding: 5px 8px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #111;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      outline: none;
+      min-width: 120px;
+    }
+    /* Search input */
+    .search-input {
+      flex: 1;
+      border: none;
+      padding: 8px 10px;
+      font-size: 16px;
+      outline: none;
+    }
+    /* Search button */
+    .search-button {
+      background-color: #febd69;
+      border: none;
+      padding: 0 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    .search-button svg {
+      width: 20px;
+      height: 20px;
+      fill: #111;
+    }
+    /* Nav links container */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    /* Language selector */
+    .language-selector {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .language-selector img {
+      width: 20px;
+      height: 14px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+    /* Account & Lists, Returns & Orders */
+    .nav-item {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      color: white;
+    }
+    .nav-item .line1 {
+      font-size: 12px;
+    }
+    .nav-item .line2 {
+      font-weight: bold;
+      font-size: 14px;
+    }
+    /* Cart */
+    .cart {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+      position: relative;
+    }
+    .cart svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+    .cart-count {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background-color: #f08804;
+      color: black;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      user-select: none;
+    }
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .card button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #febd69;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    .card button:hover {
+      background-color: #fcae3d;
+    }
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header class="header" role="banner">
+    <a href="#" class="logo" aria-label="pc_nursery Home" style="display: flex; align-items: center; gap: 8px;">
+      <img src="logo.png" alt="pc_nursery Logo" style="height: 32px; width: auto;" />
+      <span style="color: white; font-weight: bold; font-size: 18px; user-select: none;">pc_nursery</span>
+    </a>
+    <div class="location" aria-label="Update location" style="flex-direction: row; align-items: center; gap: 6px;">
+      <span class="line2" style="color:#fff; font-weight:bold; font-size: 14px; user-select:none;">Update location</span>
+    </div>
+    <form class="search-bar" role="search" aria-label="Search Amazon.in" style="display: flex; align-items: center; gap: 10px;">
+      <input type="search" class="search-input" placeholder="Search nursery" aria-label="Search input" />
+      <div class="search-button" aria-label="Search" style="background-color: #febd69; padding: 0 12px; display: flex; align-items: center; justify-content: center; border-top-right-radius: 4px; border-bottom-right-radius: 4px; cursor: default;">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" style="width: 20px; height: 20px; fill: #111;">
+          <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.07 5.59 12.52 3 9.5 3S4 5.59 4 8.5 6.52 14 9.5 14c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 12c-1.93 0-3.5-1.57-3.5-3.5S7.57 5 9.5 5 13 6.57 13 8.5 11.43 12 9.5 12z"></path>
+        </svg>
+      </div>
+      <a href="cart.html" id="cart-button" aria-label="Go to Cart" style="background-color: #febd69; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; text-decoration: none; color: black; display: inline-block; text-align: center;">
+        Cart
+      </a>
+    </form>
+    <nav class="nav-links" aria-label="Primary navigation">
+    </nav>
+  </header>
+  <main>
+    <section class="cards-grid" id="nursery-items">
+      <!-- Nursery items will be dynamically inserted here -->
+    </section>
+  </main>
+  <script>
+    // Default nursery items
+    const defaultItems = [
+      { name: "Product 1", image: "https://via.placeholder.com/150" },
+      { name: "Product 2", image: "https://via.placeholder.com/150" },
+      { name: "Product 3", image: "https://via.placeholder.com/150" },
+      { name: "Product 4", image: "https://via.placeholder.com/150" },
+      { name: "Product 5", image: "https://via.placeholder.com/150" },
+      { name: "Product 6", image: "https://via.placeholder.com/150" },
+      { name: "Product 7", image: "https://via.placeholder.com/150" },
+      { name: "Product 8", image: "https://via.placeholder.com/150" },
+      { name: "Product 9", image: "https://via.placeholder.com/150" },
+      { name: "Product 10", image: "https://via.placeholder.com/150" }
+    ];
+
+    // Load nursery items from localStorage or initialize with default
+    function loadNurseryItems() {
+      let items = JSON.parse(localStorage.getItem('nurseryItems'));
+      if (!items) {
+        items = defaultItems;
+        localStorage.setItem('nurseryItems', JSON.stringify(items));
+      }
+      return items;
+    }
+
+    // Render nursery items
+    function renderNurseryItems() {
+      const items = loadNurseryItems();
+      const container = document.getElementById('nursery-items');
+      container.innerHTML = '';
+      items.forEach(item => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <a href="product.html?name=${encodeURIComponent(item.name)}" style="text-decoration: none; color: inherit;">
+            <img src="${item.image}" alt="${item.name}" />
+            <div style="margin-top: 10px; font-weight: bold;">${item.name}</div>
+          </a>
+        <div class="button-group">
+          <button onclick="addToCart('${item.name}', '${item.image}')">Add to Cart</button>
+          <button onclick="window.location.href='paymentoptions.html?name=' + encodeURIComponent('${item.name}')">Buy</button>
+        </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Initial render
+    renderNurseryItems();
+
+    // Add to cart function
+    function addToCart(name, image) {
+      let cart = JSON.parse(localStorage.getItem('nurseryCart')) || [];
+      cart.push({ name, image });
+      localStorage.setItem('nurseryCart', JSON.stringify(cart));
+      alert(name + ' has been added to your cart.');
+    }
+  </script>
+</body>
+</html>

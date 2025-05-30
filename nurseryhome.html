@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nursery Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      z-index: -2;
+    }
+    video#background-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100vw;
+      min-height: 100vh;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+    button {
+      background-color: #febd69;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    button:hover {
+      background-color: #fcae3d;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="window.location.href='nursery.html'">Go to Nursery</button>
+
+
+  <video id="background-video" autoplay muted loop playsinline>
+    <source src="nature.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="quote" id="quote">
+    "The clearest way into the Universe is through a forest wilderness." – John Muir
+  </div>
+  <style>
+    .quote {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-style: italic;
+      color: #4a7c59;
+      max-width: 80%;
+      text-align: center;
+      font-family: 'Georgia', serif;
+      transition: opacity 0.5s ease-in-out;
+    }
+  </style>
+  <script>
+    const quotes = [
+      "The clearest way into the Universe is through a forest wilderness. – John Muir",
+      "A society grows great when old men plant trees whose shade they know they shall never sit in. – Greek Proverb",
+      "He who plants a tree plants hope. – Lucy Larcom",
+      "The creation of a thousand forests is in one acorn. – Ralph Waldo Emerson",
+      "Between every two pines is a doorway to a new world. – John Muir",
+      "The best time to plant a tree was 20 years ago. The second best time is now. – Chinese Proverb",
+      "Trees are poems that the earth writes upon the sky. – Kahlil Gibran",
+      "In every walk with nature one receives far more than he seeks. – John Muir"
+    ];
+
+    let currentIndex = 0;
+    const quoteElement = document.getElementById('quote');
+
+    function showNextQuote() {
+      quoteElement.style.opacity = 0;
+      setTimeout(() => {
+        currentIndex = Math.floor(Math.random() * quotes.length);
+        quoteElement.textContent = quotes[currentIndex];
+        quoteElement.style.opacity = 1;
+      }, 500);
+    }
+
+    setInterval(showNextQuote, 5000);
+  </script>
+</body>
+</html>

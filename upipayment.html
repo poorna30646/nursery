@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UPI Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff;
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .payment-methods {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .payment-method {
+      cursor: pointer;
+      border: 2px solid #febd69;
+      border-radius: 10px;
+      padding: 20px;
+      width: 150px;
+      transition: background-color 0.3s ease;
+    }
+    .payment-method:hover {
+      background-color: #fcae3d;
+    }
+    .payment-method img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .qr-code {
+      margin-top: 20px;
+    }
+    .qr-code img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h1>UPI Payment for <span id="product-name">Product</span></h1>
+
+  <div class="payment-methods">
+    <a href="googlepeqr.html" class="payment-method" id="google-pay">
+      <img src="googlepay.png" alt="Google Pay" />
+      <div>Google Pay</div>
+    </a>
+    <a href="phonepeqr.html" class="payment-method" id="phonepe">
+      <img src="phonepay.png" alt="PhonePe" />
+      <div>PhonePe</div>
+    </a>
+  </div>
+
+  <div class="qr-code">
+    <div>Scan QR Code to Pay</div>
+    <img src="qrcode.png" alt="UPI QR Code" />
+  </div>
+
+  <script>
+    // Get product name from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('name') || 'Product';
+
+    // Set product name in heading
+    document.getElementById('product-name').textContent = productName;
+  </script>
+</body>
+</html>
